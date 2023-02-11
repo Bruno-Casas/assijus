@@ -70,7 +70,7 @@ app
 
 			$scope.myhttp = function(conf) {
 				// The ID of the extension we want to talk to.
-				var editorExtensionId = "ifabfihopbhogohngopafekijckmpmka";
+				var editorExtensionId = "nmecgindejdohbfmchgekpabcjmlgjbl";
 				// if ($location.absUrl().indexOf("//localhost/")
 				// !== -1)
 				// editorExtensionId =

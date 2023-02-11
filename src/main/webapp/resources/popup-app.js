@@ -17,7 +17,7 @@ app
 
 			$scope.myhttp = function(conf) {
 				// The ID of the extension we want to talk to.
-				var editorExtensionId = "ifabfihopbhogohngopafekijckmpmka";
+				var editorExtensionId = "nmecgindejdohbfmchgekpabcjmlgjbl";
 				var deferred = $q.defer();
 
 				// Make a simple request:
