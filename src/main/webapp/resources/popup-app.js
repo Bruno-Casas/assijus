@@ -17,8 +17,8 @@ app
 
 			$scope.myhttp = function(conf) {
 				// The ID of the extension we want to talk to.
-				var editorExtensionId = "nmecgindejdohbfmchgekpabcjmlgjbl";
-				var deferred = $q.defer();
+				let editorExtensionIds = ["oolpnkajnjhkkacldjfjhcechhglbjlk", "nmecgindejdohbfmchgekpabcjmlgjbl"];
+				let deferred = $q.defer();
 
 				// Make a simple request:
 				if (chrome.runtime !== undefined) {
@@ -32,7 +32,18 @@ app
 									deferred.reject(response);
 								}
 							} catch (err) {
-								deferred.reject(response);
+								chrome.runtime.sendMessage(editorExtensionId, conf,
+									function(response) {
+										try {
+											if (response.success) {
+												deferred.resolve(response)
+											} else {
+												deferred.reject(response);
+											}
+										} catch (err) {
+											deferred.reject(response);
+										}
+									});
 							}
 						});
 					return deferred.promise;

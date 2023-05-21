@@ -70,7 +70,7 @@ app
 
 			$scope.myhttp = function(conf) {
 				// The ID of the extension we want to talk to.
-				var editorExtensionId = "nmecgindejdohbfmchgekpabcjmlgjbl";
+				let editorExtensionIds = ["oolpnkajnjhkkacldjfjhcechhglbjlk", "nmecgindejdohbfmchgekpabcjmlgjbl"];
 				// if ($location.absUrl().indexOf("//localhost/")
 				// !== -1)
 				// editorExtensionId =
@@ -79,7 +79,7 @@ app
 
 				if (chrome.runtime !== undefined) {
 					// Make a simple request:
-					chrome.runtime.sendMessage(editorExtensionId, conf,
+					chrome.runtime.sendMessage(editorExtensionIds[0], conf,
 						function(response) {
 							try {
 								if (response.success) {
@@ -88,7 +88,18 @@ app
 									deferred.reject(response);
 								}
 							} catch (err) {
-								deferred.reject(response);
+								chrome.runtime.sendMessage(editorExtensionIds[1], conf,
+									function(response) {
+										try {
+											if (response.success) {
+												deferred.resolve(response)
+											} else {
+												deferred.reject(response);
+											}
+										} catch (err) {
+											deferred.reject(response);
+										}
+									});
 							}
 						});
 					return deferred.promise;
