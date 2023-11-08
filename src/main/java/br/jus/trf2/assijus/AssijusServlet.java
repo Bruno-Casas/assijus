@@ -52,13 +52,10 @@ public class AssijusServlet extends SwaggerServlet {
 			SwaggerUtils.setCache(new MemCacheRedis());
 
 		addPrivateProperty("timestamp.issuer", null);
-		if (getProperty("timestamp.issuer") != null) {
-			addPublicProperty("timestamp.public.key");
+		if (getProperty("timestamp.issuer") != null)
 			addPrivateProperty("timestamp.private.key");
-		} else {
-			addPublicProperty("timestamp.public.key", null);
+		else
 			addPrivateProperty("timestamp.private.key", null);
-		}
 
 		addPublicProperty("login.issuer", null);
 		addPublicProperty("login.systems", null);
@@ -86,7 +83,6 @@ public class AssijusServlet extends SwaggerServlet {
 				});
 			}
 		}
-		addPublicProperty("timestamp.public.key");
 		addPrivateProperty("timestamp.private.key");
 
 		addDependency(new SwaggerServletDependency("webservice", "blucservice", false, 0, 10000) {
